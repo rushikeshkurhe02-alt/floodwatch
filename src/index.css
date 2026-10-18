@@ -1,0 +1,325 @@
+/* FloodWatch Design Tokens & Bootstrap Overrides */
+
+:root {
+  --fw-primary: #0E7490;
+  --fw-primary-dark: #0B5E75;
+  --fw-accent: #0EA5E9;
+  --fw-bg: #F1F5F9;
+  --fw-surface: #FFFFFF;
+  --fw-text: #0F172A;
+  --fw-muted: #64748B;
+  --fw-border: #E2E8F0;
+  --fw-success: #16A34A;
+  --fw-warning: #F59E0B;
+  --fw-danger: #DC2626;
+
+  /* Bootstrap Variable Overrides */
+  --bs-primary: #0E7490;
+  --bs-primary-rgb: 14, 116, 144;
+  --bs-body-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --bs-body-color: #0F172A;
+  --bs-body-bg: #F1F5F9;
+  --bs-border-radius: 0.75rem; /* 12px */
+  --bs-border-radius-lg: 1rem;
+  --bs-border-radius-sm: 0.5rem;
+  --bs-link-color: #0E7490;
+  --bs-link-hover-color: #0B5E75;
+}
+
+body {
+  margin: 0;
+  font-family: var(--bs-body-font-family);
+  color: var(--fw-text);
+  background-color: var(--fw-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-font {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: var(--fw-text);
+}
+
+/* Tabular figures for numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Custom Primary Button Styles */
+.btn-primary {
+  background-color: var(--fw-primary) !important;
+  border-color: var(--fw-primary) !important;
+  color: #ffffff !important;
+  font-weight: 500;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--fw-primary-dark) !important;
+  border-color: var(--fw-primary-dark) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 116, 144, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-outline-primary {
+  color: var(--fw-primary) !important;
+  border-color: var(--fw-primary) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--fw-primary) !important;
+  color: #ffffff !important;
+}
+
+/* Navbar */
+.app-navbar {
+  height: 64px;
+  background-color: var(--fw-surface);
+  border-bottom: 1px solid var(--fw-border);
+  z-index: 1020;
+}
+
+/* Floating Action Button */
+.btn-fab {
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #0E7490 0%, #0284C7 100%);
+  color: #ffffff !important;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(14, 116, 144, 0.35);
+  border: none;
+  padding: 0.75rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  z-index: 1000;
+}
+
+.btn-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(14, 116, 144, 0.45);
+  color: #ffffff !important;
+}
+
+.btn-fab:active {
+  transform: translateY(0);
+}
+
+/* Map Container Layout */
+.app-viewport {
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+.map-container-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.map-element {
+  width: 100%;
+  height: 100%;
+}
+
+/* Pin Drop Mode Cursor & Overlay */
+.pin-drop-active .leaflet-container {
+  cursor: crosshair !important;
+}
+
+.pin-drop-banner {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1010;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+  border-radius: 12px;
+  max-width: 90%;
+}
+
+/* Leaflet Customizations */
+.leaflet-popup-content-wrapper {
+  border-radius: 14px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid var(--fw-border) !important;
+  padding: 4px !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  background: white !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Pulsing Keyframe for Temporary Pin */
+@keyframes tempPinPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(14, 116, 144, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 16px rgba(14, 116, 144, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(14, 116, 144, 0);
+  }
+}
+
+.temp-pin-pulse {
+  animation: tempPinPulse 1.8s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* Verified marker live celebration pulse */
+@keyframes verifiedPulseAnimation {
+  0% {
+    stroke-width: 4;
+    stroke: #16A34A;
+    r: 14;
+  }
+  50% {
+    stroke-width: 8;
+    stroke: #22C55E;
+    r: 22;
+  }
+  100% {
+    stroke-width: 4;
+    stroke: #16A34A;
+    r: 14;
+  }
+}
+
+.verified-pulse-ring {
+  animation: verifiedPulseAnimation 1.5s ease-in-out infinite;
+}
+
+/* Custom Cards & Panels */
+.custom-card {
+  background: var(--fw-surface);
+  border: 1px solid var(--fw-border);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.report-item-card {
+  background: var(--fw-surface);
+  border: 1px solid var(--fw-border);
+  border-radius: 10px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.report-item-card:hover {
+  border-color: #CBD5E1;
+  background: #F8FAFC;
+  transform: translateY(-1px);
+}
+
+/* Map Floating Controls */
+.map-control-btn {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #CBD5E1;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transition: all 0.15s ease;
+}
+
+.map-control-btn:hover {
+  background: #F8FAFC;
+  color: var(--fw-primary);
+  border-color: var(--fw-primary);
+}
+
+/* Toast Container positioning */
+.fw-toast-container {
+  position: fixed;
+  z-index: 1090;
+  pointer-events: none;
+}
+
+.fw-toast-container .toast {
+  pointer-events: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15);
+}
+
+@media (min-width: 992px) {
+  .fw-toast-container {
+    top: 80px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .fw-toast-container {
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 380px;
+  }
+}
+
+/* Severity selection card */
+.severity-card {
+  border: 2px solid var(--fw-border);
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.severity-card:hover {
+  border-color: #94A3B8;
+  background-color: #F8FAFC;
+}
+
+.severity-card.active-low {
+  border-color: #FACC15;
+  background-color: #FEFCE8;
+}
+
+.severity-card.active-medium {
+  border-color: #F59E0B;
+  background-color: #FFFBEB;
+}
+
+.severity-card.active-high {
+  border-color: #DC2626;
+  background-color: #FEF2F2;
+}
+
+/* Custom scrollbar for sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
